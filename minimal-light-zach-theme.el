@@ -1,0 +1,33 @@
+(deftheme minimal-light-zach
+  "Created 2015-02-08; Like minimal-light but less shitty.")
+
+(custom-theme-set-faces
+ 'minimal-light-zach
+ '(cursor ((((class color) (min-colors 89)) (:background "black" :inverse-video t))))
+ '(vertical-border ((t (:foreground "grey20"))))
+ '(minibuffer-prompt ((((class color) (min-colors 89)) (:foreground "black" :weight bold))))
+ '(region ((t (:background "gray20" :foreground "gray60"))))
+ '(secondary-selection ((((class color) (min-colors 89)) (:background "grey90"))))
+ '(font-lock-builtin-face ((((class color) (min-colors 89)) (:foreground "grey20" :weight bold))))
+ '(font-lock-constant-face ((((class color) (min-colors 89)) (:foreground "grey20" :weight bold))))
+ '(font-lock-keyword-face ((((class color) (min-colors 89)) (:foreground "grey20" :weight bold))))
+ '(font-lock-type-face ((((class color) (min-colors 89)) (:foreground "grey20" :slant italic))))
+ '(font-lock-function-name-face ((((class color) (min-colors 89)) (:foreground "grey20" :weight bold))))
+ '(font-lock-variable-name-face ((((class color) (min-colors 89)) (:foreground "grey20"))))
+ '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "grey85"))))
+ '(font-lock-comment-face ((((class color) (min-colors 89)) (:foreground "grey50"))))
+ '(font-lock-doc-face ((((class color) (min-colors 89)) (:inherit (font-lock-comment-face)))))
+ '(font-lock-string-face ((((class color) (min-colors 89)) (:foreground "grey20" :foreground "grey40"))))
+ '(isearch ((((class color) (min-colors 89)) (:foreground "grey20" :background "grey90" :weight normal))))
+ '(isearch-fail ((((class color) (min-colors 89)) (:foreground "red" :bold t))))
+ '(lazy-highlight ((((class color) (min-colors 89)) (:foreground "grey20" :background "grey90"))))
+ '(ido-subdir ((((class color) (min-colors 89)) (:foreground "grey20" :weight bold))))
+ '(ido-only-match ((((class color) (min-colors 89)) (:foreground "grey20" :weight bold))))
+ '(show-paren-match ((((class color) (min-colors 89)) (:background "grey90"))))
+ '(show-paren-mismatch ((((class color) (min-colors 89)) (:foreground "red" :weight bold))))
+ '(mode-line ((((class color) (min-colors 89)) (:inverse-video unspecified :overline "grey90" :underline nil :foreground "grey20" :background "grey95" :box (:line-width 1 :color "white" :style unspecified)))))
+ '(mode-line-buffer-id ((((class color) (min-colors 89)) (:weight bold))))
+ '(mode-line-inactive ((((class color) (min-colors 89)) (:inverse-video unspecified :overline "grey90" :underline nil :foreground "grey50" :background "white" :box (:line-width 1 :color "grey90" :style unspecified)))))
+ '(default ((((class color) (min-colors 89)) (:background "white" :foreground "grey20")))))
+
+(provide-theme 'minimal-light-zach)
