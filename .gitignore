@@ -1,6 +1,7 @@
 auto-save-list/
 elnode/
 elpa/
+eshell/
 games/
 lisp/
 request/
@@ -11,3 +12,6 @@ ido.last
 iniex
 places
 smex-items
+
+# Emacs tempfiles
+*~
