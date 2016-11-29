@@ -208,6 +208,17 @@
       (goto-char end)
       (previous-line (/ count 2))
       (recenter))))
+(defun save-macro (name)
+  "Save last-defined macro as NAME."
+  ;; https://www.emacswiki.org/emacs/KeyboardMacrosTricks
+  (interactive "SName of the macro: ")
+  (kmacro-name-last-macro name)
+  (find-file user-init-file)
+  (goto-char (point-max))
+  (newline)
+  (insert-kbd-macro name)
+  (newline)
+  (switch-to-buffer nil))
 ;; guide-key
 (require 'guide-key)
 ;; rcirc
