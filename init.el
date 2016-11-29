@@ -395,7 +395,7 @@
  '(fci-rule-color "#383838" t)
  '(flycheck-lintr-caching nil)
  '(frame-brackground-mode (quote dark))
- '(gofmt-command "/usr/local/bin/gofmt")
+ '(gofmt-command "/usr/local/go/bin/gofmt")
  '(indent-tabs-mode nil)
  '(js-curly-indent-offset 0)
  '(js-expr-indent-offset 0)
