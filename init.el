@@ -211,6 +211,14 @@
       (goto-char end)
       (previous-line (/ count 2))
       (recenter))))
+(require 'cl-lib)
+(defun sum-numbers-in-region (start end)
+  "Sums all numbers in region between START and END."
+  (interactive "r")
+  (message "%s"
+           (cl-reduce #'+
+                      (split-string (buffer-substring start end))
+                      :key #'string-to-number)))
 (defun save-macro (name)
   "Save last-defined macro as NAME."
   ;; https://www.emacswiki.org/emacs/KeyboardMacrosTricks
@@ -419,6 +427,7 @@
  '(package-selected-packages
    (quote
     (avy anzu handlebars-sgml-mode clj-refactor exec-path-from-shell elm-mode ztree haskell-mode flymake-jshint lua-mode minimap autumn-light-theme go-mode elnode coffee-mode hl-todo cider yaml-mode elixir-mode jsx-mode tronesque-theme firebelly-theme clojure-mode alert bash-completion elfeed php-mode zenburn-theme web-mode warm-night-theme transpose-frame switch-window spacegray-theme sokoban soft-charcoal-theme smex smart-mode-line scss-mode screenshot restclient projectile-rails pbcopy paredit org-trello org-present obsidian-theme naquadah-theme multiple-cursors multi-term mu4e-maildirs-extension molokai-theme minimal-theme markdown-mode magit ir-black-theme ido-vertical-mode ido-ubiquitous highlight-indentation hexrgb handlebars-mode haml-mode guide-key gruber-darker-theme gntp git-gutter frame-fns flycheck flatland-black-theme flappymacs faces+ espresso-theme ember-mode darkburn-theme dark-krystal-theme column-marker colonoscopy-theme calmer-forest-theme boron-theme bliss-theme atom-dark-theme anti-zenburn-theme ample-zen-theme afternoon-theme ada-mode ack-menu ack ac-html 4clojure 2048-game)))
+ '(perl-indent-level 2)
  '(restclient-same-buffer-response-name "*HTTP Response*")
  '(send-mail-function nil)
  '(sh-indentation 2)
