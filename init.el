@@ -58,11 +58,10 @@ Failed packages are logged to *Messages* but never abort startup."
   (global-set-key (kbd "C-c n") #'window-jump-down))
 
 (global-set-key (kbd "C-c m") #'maximize-window)  ; maximize current window (keep others visible)
-(global-set-key (kbd "C-c =") #'balance-windows)     ; equalize window sizes
 
 ;; Arrow keys resize the current window in the direction of the arrow
-(global-set-key (kbd "<up>") #'enlarge-window)
-(global-set-key (kbd "<down>") #'shrink-window)
+(global-set-key (kbd "<up>") #'shrink-window)
+(global-set-key (kbd "<down>") #'enlarge-window)
 (global-set-key (kbd "<left>") #'shrink-window-horizontally)
 (global-set-key (kbd "<right>") #'enlarge-window-horizontally)
 
