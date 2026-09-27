@@ -21,6 +21,11 @@
   (package-install 'diff-hl))
 (global-diff-hl-mode)
 
+;; Undo tree
+(unless (package-installed-p 'undo-tree)
+  (package-install 'undo-tree))
+(global-undo-tree-mode)
+
 ;; Sane defaults
 (setq inhibit-startup-screen t)
 (scroll-bar-mode -1)
