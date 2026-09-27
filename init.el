@@ -28,10 +28,8 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(defmacro use-package! (&rest args)
-  "Like `use-package', but safely catches install/require failures.
-Failed packages are logged to *Messages* but never abort startup."
-  `(with-demoted-errors "init.el package error: %S" (use-package ,@args)))
+;; Load custom functions and macros
+(load (expand-file-name "lisp/init-functions.el" user-emacs-directory))
 
 ;; Theme
 (use-package! zenburn-theme
@@ -51,40 +49,7 @@ Failed packages are logged to *Messages* but never abort startup."
 ;; chumpy-windows' window-jump.el — directional window navigation
 ;; Loaded from site-lisp if available (installed via 'git clone' or downloaded)
 (with-demoted-errors "window-jump not available: %S"
-  (require 'window-jump)
-  (global-set-key (kbd "C-c b") #'window-jump-left)
-  (global-set-key (kbd "C-c f") #'window-jump-right)
-  (global-set-key (kbd "C-c p") #'window-jump-up)
-  (global-set-key (kbd "C-c n") #'window-jump-down))
-
-(global-set-key (kbd "C-c m") #'maximize-window)  ; maximize current window (keep others visible)
-
-;; Arrow keys resize the current window in the direction of the arrow
-(global-set-key (kbd "<up>") #'shrink-window)
-(global-set-key (kbd "<down>") #'enlarge-window)
-(global-set-key (kbd "<left>") #'shrink-window-horizontally)
-(global-set-key (kbd "<right>") #'enlarge-window-horizontally)
-
-;; Open init.el
-(defun my-open-init-file ()
-  "Open init.el."
-  (interactive)
-  (find-file (expand-file-name "init.el" user-emacs-directory)))
-(global-set-key (kbd "C-c i") #'my-open-init-file)
-
-;; Smart C-a: toggle between indentation and true line start
-(defun my-smarter-move-beginning-of-line (arg)
-  "Move to indentation; if already there, move to true beginning.
-Repeated calls toggle between the two positions."
-  (interactive "^p")
-  (setq arg (or arg 1))
-  (when (/= arg 1)
-    (let ((line-move-visual nil)) (forward-line (1- arg))))
-  (let ((orig-point (point)))
-    (back-to-indentation)
-    (when (= orig-point (point))
-      (move-beginning-of-line 1))))
-(global-set-key [remap move-beginning-of-line] #'my-smarter-move-beginning-of-line)
+  (require 'window-jump))
 
 ;; Completion system (Vertico + Orderless + Marginalia)
 (use-package! vertico
@@ -100,14 +65,16 @@ Repeated calls toggle between the two positions."
 
 ;; Project file search
 (use-package! projectile
-  :config (projectile-mode 1)
-  :bind (("C-c s" . projectile-find-file)))
+  :config (projectile-mode 1))
 
 (savehist-mode 1) ; persist minibuffer history across sessions
 
 ;; Mode line (Powerline-style)
 (use-package! telephone-line
   :config (telephone-line-mode 1))
+
+;; Load keybindings
+(load (expand-file-name "lisp/keybindings.el" user-emacs-directory))
 
 ;; Sane defaults
 (setq inhibit-startup-screen t)
