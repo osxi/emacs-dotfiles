@@ -1,0 +1,20 @@
+# Emacs runtime state — machine-specific, not config
+auto-save-list/
+*~
+*.bak
+.#*
+
+# Package management
+elpa/
+eln-cache/
+*.elc
+
+# Customizations written by M-x customize
+custom.el
+
+# Transient data
+transient/
+.cache/
+
+# OS-specific
+.DS_Store
