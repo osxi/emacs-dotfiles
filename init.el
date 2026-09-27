@@ -96,6 +96,8 @@ Repeated calls toggle between the two positions."
 ;; Sane defaults
 (setq inhibit-startup-screen t)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; Suppress non-error warnings on startup (compilation warnings from packages)
 (setq warning-minimum-level :error)
