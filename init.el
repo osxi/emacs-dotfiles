@@ -10,6 +10,12 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+;; Theme
+(unless (package-installed-p 'zenburn-theme)
+  (package-refresh-contents)
+  (package-install 'zenburn-theme))
+(load-theme 'zenburn t)
+
 ;; Sane defaults
 (setq inhibit-startup-screen t)
 
