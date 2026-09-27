@@ -16,6 +16,11 @@
   (package-install 'zenburn-theme))
 (load-theme 'zenburn t)
 
+;; Git gutter (diff-hl)
+(unless (package-installed-p 'diff-hl)
+  (package-install 'diff-hl))
+(global-diff-hl-mode)
+
 ;; Sane defaults
 (setq inhibit-startup-screen t)
 (scroll-bar-mode -1)
