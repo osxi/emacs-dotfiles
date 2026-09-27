@@ -97,4 +97,8 @@ Repeated calls toggle between the two positions."
 (setq inhibit-startup-screen t)
 (scroll-bar-mode -1)
 
+;; Suppress non-error warnings on startup (compilation warnings from packages)
+(setq warning-minimum-level :error)
+(setq native-comp-async-report-warnings-errors 'silent)
+
 ;;; init.el ends here
