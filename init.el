@@ -13,6 +13,17 @@
 ;; Add site-lisp directory for local packages
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 
+;; Centralize backup/autosave/swap files to avoid cluttering working directories
+(let ((backup-dir (expand-file-name "var/backup" user-emacs-directory))
+      (autosave-dir (expand-file-name "var/autosave" user-emacs-directory)))
+  (dolist (dir (list backup-dir autosave-dir))
+    (make-directory dir t))
+  (setq backup-directory-alist `(("." . ,backup-dir)))
+  (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
+  (setq backup-by-copying t)
+  (setq backup-by-copying-when-linked t)
+  (setq create-lockfiles nil)) ; disable lock files (#filename#)
+
 ;; use-package — declarative package management (bundled since Emacs 29)
 (require 'use-package)
 (setq use-package-always-ensure t)

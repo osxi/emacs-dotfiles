@@ -1,4 +1,5 @@
 # Emacs runtime state — machine-specific, not config
+var/ ; centralized backup/autosave files
 auto-save-list/
 *~
 *.bak
@@ -23,6 +24,7 @@ transient/
 # Projectile
 projectile-bookmarks.eld
 projectile.cache
+projects.eld
 
 # Minibuffer history
 history
