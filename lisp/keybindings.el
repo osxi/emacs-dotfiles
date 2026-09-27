@@ -6,7 +6,6 @@
 (global-set-key (kbd "C-c n") #'window-jump-down)
 (global-set-key (kbd "C-c m") #'maximize-window)
 
-;; Arrow keys shrink/enlarge depending on direction (not intuitive; must document)
 (global-set-key (kbd "<up>") #'shrink-window)
 (global-set-key (kbd "<down>") #'enlarge-window)
 (global-set-key (kbd "<left>") #'shrink-window-horizontally)
