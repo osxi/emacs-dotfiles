@@ -57,8 +57,8 @@ Failed packages are logged to *Messages* but never abort startup."
   (global-set-key (kbd "C-c p") #'window-jump-up)
   (global-set-key (kbd "C-c n") #'window-jump-down))
 
-(global-set-key (kbd "C-c m") #'delete-other-windows) ; maximize current window
-(global-set-key (kbd "C-c =") #'balance-windows)      ; equalize window sizes
+(global-set-key (kbd "C-c m") #'maximize-window)  ; maximize current window (keep others visible)
+(global-set-key (kbd "C-c =") #'balance-windows)     ; equalize window sizes
 
 ;; Open init.el
 (defun my-open-init-file ()
