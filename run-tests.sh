@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Run ERT tests for this config
 
 set -euo pipefail
 
