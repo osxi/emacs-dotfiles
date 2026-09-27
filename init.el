@@ -18,5 +18,6 @@
 
 ;; Sane defaults
 (setq inhibit-startup-screen t)
+(scroll-bar-mode -1)
 
 ;;; init.el ends here
