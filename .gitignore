@@ -9,6 +9,10 @@ elpa/
 eln-cache/
 *.elc
 
+# site-lisp (local packages, e.g., git clones or manual downloads)
+# But track the .el files themselves if committed, just not .git/ dirs
+site-lisp/.*
+
 # Customizations written by M-x customize
 custom.el
 

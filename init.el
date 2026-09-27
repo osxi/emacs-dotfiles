@@ -10,6 +10,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+;; Add site-lisp directory for local packages
+(add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
+
 ;; use-package — declarative package management (bundled since Emacs 29)
 (require 'use-package)
 (setq use-package-always-ensure t)
@@ -35,12 +38,13 @@ Failed packages are logged to *Messages* but never abort startup."
 (winner-mode 1) ; C-c C-<left>/<right> to undo/redo window-layout changes
 
 ;; chumpy-windows' window-jump.el — directional window navigation
-(use-package! window-jump
-  :vc (:url "https://github.com/chumpage/chumpy-windows" :main-file "window-jump.el")
-  :bind (("C-c b" . window-jump-left)
-         ("C-c f" . window-jump-right)
-         ("C-c p" . window-jump-up)
-         ("C-c n" . window-jump-down)))
+;; Loaded from site-lisp if available (installed via 'git clone' or downloaded)
+(with-demoted-errors "window-jump not available: %S"
+  (require 'window-jump)
+  (global-set-key (kbd "C-c b") #'window-jump-left)
+  (global-set-key (kbd "C-c f") #'window-jump-right)
+  (global-set-key (kbd "C-c p") #'window-jump-up)
+  (global-set-key (kbd "C-c n") #'window-jump-down))
 
 (global-set-key (kbd "C-c m") #'delete-other-windows) ; maximize current window
 (global-set-key (kbd "C-c =") #'balance-windows)      ; equalize window sizes
