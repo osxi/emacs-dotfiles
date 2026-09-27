@@ -16,5 +16,12 @@ custom.el
 transient/
 .cache/
 
+# Projectile
+projectile-bookmarks.eld
+projectile.cache
+
+# Minibuffer history
+history
+
 # OS-specific
 .DS_Store
