@@ -30,7 +30,7 @@
 ;;
 ;;; Code:
 
-(require 'cl)
+(require 'cl-lib)
 
 (defvar wj-wrap nil
   "Whether or not to wrap the window jumping behavior. For
@@ -121,7 +121,7 @@ vectors LS) and a point P."
   (fset 'window-pixel-edges 'window-edges))
 
 (defun wj-window-box (window)
-  (destructuring-bind (wl wt wr wb) (window-pixel-edges window)
+  (cl-destructuring-bind (wl wt wr wb) (window-pixel-edges window)
     (let ((fl (wj-frame-left (window-frame window)))
           (ft (wj-frame-top (window-frame window))))
       (list (+ fl wl) (+ ft wt) (+ fl wr) (+ ft wb)))))
@@ -129,7 +129,7 @@ vectors LS) and a point P."
 (defun wj-bounding-rect-all-windows ()
   (let ((xmin wj-inf) (xmax -wj-inf) (ymin wj-inf) (ymax -wj-inf))
     (dolist (window (wj-all-windows))
-      (destructuring-bind (wl wt wr wb) (wj-window-box window)
+      (cl-destructuring-bind (wl wt wr wb) (wj-window-box window)
         (setq xmin (min xmin wl))
         (setq xmax (max xmax wr))
         (setq ymin (min ymin wt))
@@ -137,19 +137,19 @@ vectors LS) and a point P."
     (list xmin ymin xmax ymax)))
 
 (defun wj-window-segments (window)
-  (destructuring-bind (left top right bottom) (wj-window-box window)
+  (cl-destructuring-bind (left top right bottom) (wj-window-box window)
     `(((,left ,top) (,left ,bottom))
       ((,left ,top) (,right ,top))
       ((,right ,top) (,right ,bottom))
       ((,right ,bottom) (,left ,bottom)))))
 
 (defun wj-window-midpoint (window)
-  (destructuring-bind (left top right bottom) (wj-window-box window)
+  (cl-destructuring-bind (left top right bottom) (wj-window-box window)
     (list (+ left (/ (- right left) 2))
           (+ top (/ (- bottom top) 2)))))
 
 (defun wj-window-contain (window pos)
-  (destructuring-bind (left top right bottom) (wj-window-box window)
+  (cl-destructuring-bind (left top right bottom) (wj-window-box window)
     (and (> (wj-vx pos) left)
          (< (wj-vx pos) right)
          (> (wj-vy pos) top)
@@ -182,7 +182,7 @@ vectors LS) and a point P."
   (select-window window))
 
 (defun wj-jump-origin (d)
-  (destructuring-bind (wl wt wr wb) (wj-window-box (selected-window))
+  (cl-destructuring-bind (wl wt wr wb) (wj-window-box (selected-window))
     (let ((pos (wj-cursor-pos)))
       (cond ((equal d wj-vec-left)  (wj-vec wl (wj-vy pos)))
             ((equal d wj-vec-right) (wj-vec wr (wj-vy pos)))
@@ -190,14 +190,14 @@ vectors LS) and a point P."
             ((equal d wj-vec-down)  (wj-vec (wj-vx pos) wb))))))
 
 (defun wj-wrap-jump-origin (o d)
-  (destructuring-bind (fl ft fr fb) (wj-bounding-rect-all-windows)
+  (cl-destructuring-bind (fl ft fr fb) (wj-bounding-rect-all-windows)
     (cond ((equal d wj-vec-left)  (wj-vec (+ fr 1) (wj-vy o)))
           ((equal d wj-vec-right) (wj-vec (- fl 1) (wj-vy o)))
           ((equal d wj-vec-up)    (wj-vec (wj-vx o) (+ fb 1)))
           ((equal d wj-vec-down)  (wj-vec (wj-vx o) (- ft 1))))))
 
 (defun wj-get-windows-in-direction (o d windows)
-  (remove-if (lambda (window)
+  (cl-remove-if (lambda (window)
                (let ((to-window-vec (wj-vec- (wj-closest-point-on-window o window) o)))
                  (and (not (= (wj-vec-length to-window-vec) 0))
                       (<= (wj-vec-dot to-window-vec d) 0))))
