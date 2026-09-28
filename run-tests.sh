@@ -4,6 +4,10 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 
+emacs --batch --init-directory "$REPO_DIR" \
+  --eval '(setq debug-on-error t)' \
+  -l "$REPO_DIR/init.el"
+
 emacs --batch \
   -l ert \
   -l "$REPO_DIR/lisp/init-functions.el" \

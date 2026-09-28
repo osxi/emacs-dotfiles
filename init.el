@@ -10,12 +10,12 @@
 
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 
+(load (expand-file-name "lisp/init-functions.el" user-emacs-directory))
+
 (my-configure-backup-locations)
 
 (require 'use-package)
 (setq use-package-always-ensure t)
-
-(load (expand-file-name "lisp/init-functions.el" user-emacs-directory))
 
 (use-package! zenburn-theme
   :config (load-theme 'zenburn t))
