@@ -25,7 +25,7 @@ transient/
 .cache/
 
 # Projectile
-projectile-bookmarks.eld
+*.eld
 projectile.cache
 projects.eld
 
