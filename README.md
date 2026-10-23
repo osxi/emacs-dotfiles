@@ -49,6 +49,7 @@ Packages install automatically on first launch. No manual steps, no tribal knowl
 - **Completion:** Vertico + Orderless + Marginalia (vertical list, fuzzy matching, colorful annotations)
 - **Error resilience:** Failed package installs never abort startup (logged to `*Messages*` instead)
 - **File organization:** Backup/autosave files centralized in `~/.config/emacs/var/`
+- **Fast startup:** GC and file-name handlers suppressed during init; `diff-hl` and `undo-tree` load 1 s after idle, `projectile` on first use of `C-c s`
 
 ## Architecture
 

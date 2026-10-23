@@ -4,6 +4,22 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; Startup performance: during init, skip garbage collection (512 MB heap
+;; is plenty) and disable odd file-name handlers (Tramp etc., unused here).
+;; Both are restored once init finishes, in `after-init-hook'.
+(defvar my--gc-cons-threshold gc-cons-threshold)
+(defvar my--file-name-handler-alist file-name-handler-alist)
+(setq gc-cons-threshold (* 512 1024 1024)
+      file-name-handler-alist nil)
+(add-hook 'after-init-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 8 1024 1024)
+                  file-name-handler-alist my--file-name-handler-alist)
+            (garbage-collect)))
+;; Note: the 8 MB post-init threshold (down from 512 MB, up from the
+;; 800 KB default) trades a little memory for fewer GCs while editing.
+;; Set it back to `my--gc-cons-threshold' if you prefer stock behavior.
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -21,9 +37,11 @@
   :config (load-theme 'zenburn t))
 
 (use-package! diff-hl
+  :defer 1
   :config (global-diff-hl-mode))
 
 (use-package! undo-tree
+  :defer 1
   :config (global-undo-tree-mode))
 
 (winner-mode 1)
@@ -43,6 +61,8 @@
   :config (marginalia-mode 1))
 
 (use-package! projectile
+  :defer t
+  :commands (projectile-find-file)
   :config (projectile-mode 1))
 
 (savehist-mode 1)
